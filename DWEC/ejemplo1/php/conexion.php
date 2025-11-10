@@ -1,33 +1,14 @@
 <?php
-class Conexion {
-    private $servidor = "localhost";
-    private $usuario = "root";
-    private $password = "";
-    private $base_datos = "instituto";
-    private $conexion;
+$host = "localhost";
+$usuario = "root";
+$contraseña = "";
+$base_datos = "instituto";
 
-    public function __construct() {
-        try {
-            $this->conexion = new mysqli($this->servidor, $this->usuario, $this->password, $this->base_datos);
-            
-            if ($this->conexion->connect_error) {
-                die("Error de conexión: " . $this->conexion->connect_error);
-            }
-            
-            $this->conexion->set_charset("utf8");
-        } catch (Exception $e) {
-            die("Error al conectar con la base de datos: " . $e->getMessage());
-        }
-    }
+// Crear conexión
+$conn = new mysqli($host, $usuario, $contraseña, $base_datos);
 
-    public function getConexion() {
-        return $this->conexion;
-    }
-
-    public function cerrarConexion() {
-        if ($this->conexion) {
-            $this->conexion->close();
-        }
-    }
+// Verificar conexión
+if ($conn->connect_error) {
+    die("Error de conexión: " . $conn->connect_error);
 }
 ?>
